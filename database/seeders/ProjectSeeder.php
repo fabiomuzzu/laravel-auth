@@ -25,7 +25,7 @@ class ProjectSeeder extends Seeder
             $project->description = $faker->paragraph;
             $project->date_start = $faker->date;
             $project->date_end = $faker->date;
-            $project->img = $faker->url;
+            $project->img = $faker->imageUrl();
 
             $project->save();
         }
