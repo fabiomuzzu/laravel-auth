@@ -14,7 +14,7 @@
                           <p class="card-text">{{$project['descriptions']}}</p>
                           <p class="card-text">{{$project['date_start']}}</p>
                           <p class="card-text">{{$project['date_end']}}</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          <a href="{{route('admin.projects.show', $project['id'])}}" class="btn btn-primary">Visualizza</a>
                         </div>
                     </div>
                 </div>
