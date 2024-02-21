@@ -12,12 +12,11 @@
                         <img src="{{$project['img']}}" class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">{{$project['name']}}</h5>
-                          <p class="card-text">{{$project['slug']}}</p>
-                          <p class="card-text">{{$project['repository_link']}}</p>
-                          <p class="card-text">{{$project['descriptions']}}</p>
+                          <a class="card-text" href="{{$project['repository_link']}}">Repository link</a>
+                          <p class="card-text">{{$project['description']}}</p>
                           <p class="card-text">{{$project['date_start']}}</p>
                           <p class="card-text">{{$project['date_end']}}</p>
-                          <a href="{{route('admin.projects.show', $project['id'])}}" class="btn btn-primary">Details</a>
+                          <a href="{{route('admin.projects.show', ['project'=>$project->slug])}}" class="btn btn-primary">Details</a>
                         </div>
                     </div>
                 </div>
