@@ -6,6 +6,9 @@
             <div class="col-12">
                 <h1 class="text-center my-4">My Projects</h1>
             </div>
+            <div class="col-12 my-3">
+                <button type="button" class="btn btn-primary float-end me-3 "><a class="text-decoration-none text-white" href="{{route('admin.projects.create')}}">Add Project</a></button>
+            </div>
             @foreach ($projects as $project)
                 <div class="col-3 my-3 ">
                     <div class="card" style="width: 18rem;">
