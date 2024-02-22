@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 
 class ProjectController extends Controller
@@ -39,7 +40,20 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $form_data = $request->all();
+
+        $project = new Project();
+        $project->img = $form_data['img'];
+        $project->name = $form_data['name'];
+        $project->slug = Str::slug($project->name. '-');
+        $project->repository_link = $form_data['repository_link'];
+        $project->description = $form_data['description'];
+        $project->date_start = $form_data['date_start'];
+        $project->date_end = $form_data['date_end'];
+
+        $project->save();
+
+        return redirect()->route('admin.projects.index');
     }
 
     /**

@@ -19,24 +19,33 @@
 
                     <div class="p-4">
                         <div class="mb-3">
-                            <label for="thumb" class="form-label">Image</label>
-                            <input type="text" name="thumb" class="form-control" id="thumb" placeholder="Image..." >
+                            <label for="img" class="form-label">Image</label>
+                            <input type="text" name="img" class="form-control" id="img" placeholder="Image..." >
                         </div>
                         <div class="mb-3">
-                            <label for="Project Name" class="form-label">Project Name</label>
-                            <input type="text" name="Project Name" class="form-control" id="Project Name" placeholder="Project Name..." >
+                            <label for="name" class="form-label">Project name</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Project name..." value="{{ old('name') }}" >
+                            @error('name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
                             <textarea class="form-control" name="description" id="description" cols="30" rows="5" placeholder="Description..." ></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="repository link" class="form-label">Repository link</label>
-                            <input type="text" name="repository link" class="form-control" id="repository link" placeholder="Repository link..." >
+                            <label for="repository_link" class="form-label">Repository link</label>
+                            <input type="text" name="repository_link" class="form-control" id="repository_link" placeholder="Repository link..." value="{{ old('repository_link') }}" >
+                            @error('repository_link')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="date_start" class="form-label">Start date</label>
-                            <input class="form-control" type="date" name="date_start" id="date_start">
+                            <input class="form-control" type="date" name="date_start" id="date_start" value="{{ old('date_start') }}" >
+                            @error('date_start')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="date_end" class="form-label">End date</label>
