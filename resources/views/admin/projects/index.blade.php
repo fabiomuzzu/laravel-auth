@@ -20,6 +20,7 @@
                           <p class="card-text">{{$project['date_start']}}</p>
                           <p class="card-text">{{$project['date_end']}}</p>
                           <a href="{{route('admin.projects.show', ['project'=>$project->slug])}}" class="btn btn-primary">Details</a>
+                          <a href="{{route('admin.projects.edit', ['project'=>$project->slug])}}" class="btn btn-warning float-end text-white">Edit</a>
                         </div>
                     </div>
                 </div>
