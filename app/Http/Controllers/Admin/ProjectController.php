@@ -18,7 +18,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::orderBy('id', 'desc')->get();
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -43,14 +43,9 @@ class ProjectController extends Controller
         $form_data = $request->all();
 
         $project = new Project();
-        $project->img = $form_data['img'];
-        $project->name = $form_data['name'];
-        $project->slug = Str::slug($project->name. '-');
-        $project->repository_link = $form_data['repository_link'];
-        $project->description = $form_data['description'];
-        $project->date_start = $form_data['date_start'];
-        $project->date_end = $form_data['date_end'];
 
+        $project->fill($form_data);
+        $project->slug = Str::slug($project->name. '-');
         $project->save();
 
         return redirect()->route('admin.projects.index');
