@@ -22,12 +22,9 @@
                             <div class="col-12 d-flex justify-content-center py-3">
                                 <a href="{{route('admin.projects.show', ['project'=>$project->slug])}}" class="btn btn-primary">Details</a>
                                 <a href="{{route('admin.projects.edit', ['project'=>$project->slug])}}" class="btn btn-warning text-white mx-4">Edit</a>
-                                <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="post" onsubmit="return confirm('Are you sure you want delete this project?')">
-                                    @csrf
-                                    @method('DELETE')
-    
-                                    <button class="btn btn-danger" type="submit">DELETE</button>
-                                </form>
+                                <button class="btn btn-danger" type="submit" data-bs-toggle="modal" data-bs-target="#modal_project_delete">DELETE</button>
+
+                                @include('admin.projects.partials.modal_delete')
                             </div>
                         </div>
                     </div>
@@ -35,4 +32,5 @@
             @endforeach
         </div>
     </div>
+
 @endsection
