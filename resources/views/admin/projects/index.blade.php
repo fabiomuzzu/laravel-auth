@@ -12,10 +12,14 @@
             @foreach ($projects as $project)
                 <div class="col-3 my-3 ">
                     <div class="card" style="width: 18rem;">
-                        @if (Str::contains($project->img, 'https'))
-                            <img src="{{$project['img']}}" class="card-img-top">
+                        @if ($project->img !== null)
+                            @if (Str::contains($project->img, 'https'))
+                                <img src="{{$project['img']}}" class="card-img-top">
+                            @else
+                                <img src="{{ asset('/storage/' . $project->img) }}" class="card-img-top">
+                            @endif                         
                         @else
-                            <img src="{{ asset('/storage/' . $project->img) }}" class="card-img-top">
+                            <img src="https://secureservercdn.net/166.62.110.60/h65.3a1.myftpupload.com/wp-content/uploads/2021/09/variable-placeholder-product-31.jpg?time=1644500349" class="card-img-top">
                         @endif
                         <div class="card-body">
                             <h5 class="card-title">{{$project['name']}}</h5>
