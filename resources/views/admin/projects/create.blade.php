@@ -8,7 +8,7 @@
                 <h2 class="text-center">Add a New Project</h2>
             </div>
             <div class="col-12">
-                <form action="{{ route('admin.projects.store') }}" method="POST">
+                <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -23,7 +23,7 @@
                     <div class="p-4">
                         <div class="mb-3">
                             <label for="img" class="form-label">Image</label>
-                            <input type="text" name="img" class="form-control" id="img" placeholder="Image..." value="{{ old('img') }}">
+                            <input class="form-control @error('img') is invalid @enderror" type="file" name="img" id="img" value="{{ old('img') }}">
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Project name</label>
