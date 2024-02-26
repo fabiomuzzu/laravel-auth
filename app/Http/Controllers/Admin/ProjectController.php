@@ -95,6 +95,23 @@ class ProjectController extends Controller
     {
         $form_data = $request->all();
 
+        $exists = Project::where('name', 'LIKE', $form_data['name'])->where('id', '!=', $project['id'])->get();
+
+        if (count($exists) > 0) {
+            $error_message = 'This project name is already present!';
+            return redirect()->route('admin.projects.edit'. compact('project', 'error_message'));
+        }
+
+        if ($request->hasFile('img')) {
+            // Se il progetto ha una immagine la cancello
+            if ($project->img != null) {
+                Storage::disk('public')->delete($project->img);
+            }
+
+            $path = Storage::disk('public')->put('projects_image', $form_data['img']);
+            $form_data['img'] = $path;
+        };
+
         $project->fill($form_data);
         $project->slug = Str::slug($project->name. '-');
         $project->update();
@@ -110,6 +127,11 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+
+        if ($project->img != null) {
+            Storage::disk('public')->delete($project->img);
+        }
+        
         $project->delete();
         return redirect()->route('admin.projects.index');
     }

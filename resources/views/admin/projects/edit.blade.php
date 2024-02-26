@@ -8,7 +8,7 @@
                 <h2 class="text-center">Edit Project</h2>
             </div>
             <div class="col-12">
-                <form action="{{ route('admin.projects.update', $project->slug) }}" method="POST">
+                <form action="{{ route('admin.projects.update', $project->slug) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -24,8 +24,20 @@
 
                     <div class="p-4">
                         <div class="mb-3">
+                            @if($project->img != null)
+                                <div class="my-3 d-flex justify-content-center">
+                                    <img src="{{ asset('/storage/' . $project->img) }}" alt="{{ $project->name }}" class="rounded" >
+                                </div>
+                            @else
+                                <div class="my-3 d-flex justify-content-center">
+                                    <img src="https://secureservercdn.net/166.62.110.60/h65.3a1.myftpupload.com/wp-content/uploads/2021/09/variable-placeholder-product-31.jpg?time=1644500349" alt="{{ $project->name }}" class="rounded" >
+                                </div>
+                            @endif
                             <label for="img" class="form-label">Image</label>
-                            <input type="text" name="img" class="form-control" id="img" placeholder="Image..." value="{{ old('img') ?? $project->img }}" >
+                            <input class="form-control @error('img') is invalid @enderror" type="file" name="img" id="img" value="{{ old('img') }}" accept="image/*">
+                            @error('img')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Project name</label>
