@@ -12,7 +12,11 @@
             @foreach ($projects as $project)
                 <div class="col-3 my-3 ">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{$project['img']}}" src="" class="card-img-top" alt="...">
+                        @if (Str::contains($project->img, 'https'))
+                            <img src="{{$project['img']}}" class="card-img-top">
+                        @else
+                            <img src="{{ asset('/storage/' . $project->img) }}" class="card-img-top">
+                        @endif
                         <div class="card-body">
                             <h5 class="card-title">{{$project['name']}}</h5>
                             <a class="card-text" href="{{$project['repository_link']}}">Repository link</a>
