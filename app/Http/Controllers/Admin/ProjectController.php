@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class ProjectController extends Controller
@@ -44,6 +46,14 @@ class ProjectController extends Controller
         $form_data = $request->all();
 
         $project = new Project();
+
+        // Verifico se la richiesta contiene qualcosa nel campo img
+        if ($request->hasFile('img')) {
+            
+            // Eseguo l'upload del file e recupero il path
+            $path = Storage::disk('public')->put('projects_image', $form_data['img']);
+            $form_data['img'] = $path;
+        };
 
         $project->fill($form_data);
         $project->slug = Str::slug($project->name. '-');

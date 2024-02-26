@@ -23,7 +23,10 @@
                     <div class="p-4">
                         <div class="mb-3">
                             <label for="img" class="form-label">Image</label>
-                            <input class="form-control @error('img') is invalid @enderror" type="file" name="img" id="img" value="{{ old('img') }}">
+                            <input class="form-control @error('img') is invalid @enderror" type="file" name="img" id="img" value="{{ old('img') }}" accept="image/*">
+                            @error('img')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Project name</label>
