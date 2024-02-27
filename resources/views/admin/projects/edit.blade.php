@@ -25,9 +25,11 @@
                     <div class="p-4">
                         <div class="mb-3">
                             @if($project->img != null)
-                                <div class="my-3 d-flex justify-content-center">
-                                    <img src="{{ asset('/storage/' . $project->img) }}" alt="{{ $project->name }}" class="rounded" >
-                                </div>
+                                @if (Str::contains($project->img, 'https'))
+                                    <img src="{{$project['img']}}" class="card-img-top my-3" style="width: 300px" >
+                                @else
+                                    <img src="{{ asset('/storage/' . $project->img) }}" class="card-img-top my-3" style="width: 300px">
+                                @endif      
                             @else
                                 <div class="my-3 d-flex justify-content-center">
                                     <img src="https://secureservercdn.net/166.62.110.60/h65.3a1.myftpupload.com/wp-content/uploads/2021/09/variable-placeholder-product-31.jpg?time=1644500349" alt="{{ $project->name }}" class="rounded" >
