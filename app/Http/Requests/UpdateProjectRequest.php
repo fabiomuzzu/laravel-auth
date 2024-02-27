@@ -24,7 +24,7 @@ class UpdateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:projects',
+            'name' => 'required',
             'repository_link' => 'required',
             'date_start' => 'required',
         ];
@@ -33,7 +33,6 @@ class UpdateProjectRequest extends FormRequest
     public function messages(){
         return [
             'name.required' => 'The project name is required',
-            'name.unique' => 'The project name is already present!',
             'repository_link.required' => 'The repository link is required',
             'date_start.required' => 'The start date is required',
         ];

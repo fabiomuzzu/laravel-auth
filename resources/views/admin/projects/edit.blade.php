@@ -47,6 +47,9 @@
                             @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
+                            @if ($error_message != null)
+                                <div class="form-text text-danger">{{$error_message}}</div>
+                            @endif
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
